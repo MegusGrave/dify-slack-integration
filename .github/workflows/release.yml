@@ -17,6 +17,8 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Add this line to grant necessary permissions
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
