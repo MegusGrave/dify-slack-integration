@@ -1,37 +1,7 @@
-version: "1.0.0"
-type: "plugin"
-author: "Your Name"
 id: "slack-integration"
-name: "slack-integration"
-label:
-  en_US: "Slack Integration with Thread Support"
-description:
-  en_US: "Slack integration for Dify with proper thread support and context preservation"
-created_at: "2024-03-12T12:00:00Z"
-resource:
-  memory: 1048576
-  permission:
-    tool:
-      enabled: false
-    model:
-      enabled: false
-      llm: false
-    endpoint:
-      enabled: true
-    app:
-      enabled: true
-    storage: 
-      enabled: false
-      size: 0
-plugins:
-  endpoints:
-    - "endpoints/slack.yaml"
-meta:
-  version: "1.0.0"
-  arch:
-    - "amd64"
-    - "arm64"
-  runner:
-    language: "python"
-    version: "3.10"
-    entrypoint: "main"
+version: "1.0.0"
+name: "Slack Integration with Thread Support"
+description: "Slack integration for Dify with proper thread support and context preservation"
+author: "Mike Cosgrave"
+groups:
+  - group/slack.yaml

@@ -1,5 +1,5 @@
 settings:
-  - name: bot_token
+  bot_token:
     type: secret-input
     required: true
     label:
@@ -8,7 +8,7 @@ settings:
       en_US: Please input your Bot User OAuth Token from Slack API
     help:
       en_US: The Bot User OAuth Token from your Slack App (starts with xoxb-)
-  - name: allow_retry
+  allow_retry:
     type: boolean
     required: false
     label:
@@ -16,7 +16,7 @@ settings:
     default: false
     help:
       en_US: Allow Slack to retry requests (not recommended as it can cause duplicate messages)
-  - name: app
+  app:
     type: app-selector
     scope: chat
     required: true
