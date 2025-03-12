@@ -1,7 +1,9 @@
 id: slack-integration
-version: 1.0.8
-author: Mike
+version: 1.0.9
+author: Your Name
 groups:
   - group/slack.yaml
-name: Slack Integration
-description: Slack integration with thread support
+label:
+  - en_US: Slack Integration
+description:
+  - en_US: Slack integration with thread support
