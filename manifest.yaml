@@ -1,5 +1,7 @@
 id: "slack-integration"
 version: "1.0.0"
-name: "Slack Integration with Thread Support"
-description: "Slack integration for Dify with proper thread support and context preservation"
+name:
+  en_US: "Slack Integration with Thread Support"
+description:
+  en_US: "Slack integration for Dify with proper thread support and context preservation"
 author: "Your Name"
