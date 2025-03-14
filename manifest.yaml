@@ -1,0 +1,33 @@
+id: slack-integration
+version: 1.0.0
+type: "plugin"
+author: "Your Name"
+label:
+  en_US: "Slack Integration"
+description:
+  en_US: "Slack integration with thread support"
+resource:
+  memory: 1048576
+  permission:
+    tool:
+      enabled: false
+    model:
+      enabled: false
+    endpoint:
+      enabled: true
+    app:
+      enabled: true
+    storage: 
+      enabled: false
+plugins:
+  endpoints:
+    - "group/slack.yaml"
+meta:
+  version: 0.0.1
+  arch:
+    - "amd64"
+    - "arm64"
+  runner:
+    language: "python"
+    version: "3.12"
+    entrypoint: "main"

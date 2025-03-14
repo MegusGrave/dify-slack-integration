@@ -1,0 +1,28 @@
+settings:
+  bot_token:
+    type: secret-input
+    required: true
+    label:
+      en_US: Bot Token
+    placeholder:
+      en_US: Please input your Bot User OAuth Token
+    help:
+      en_US: The Bot User OAuth Token from your Slack App (starts with xoxb-)
+  allow_retry:
+    type: boolean
+    required: false
+    label:
+      en_US: Allow Retry
+    default: false
+    help:
+      en_US: Allow Slack to retry requests
+  app:
+    type: app-selector
+    scope: chat
+    required: true
+    label:
+      en_US: App
+    placeholder:
+      en_US: Select the app to answer Slack messages
+endpoints:
+  - endpoints/slack.yaml
