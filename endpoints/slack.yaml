@@ -1,5 +1,6 @@
 path: "/"
 method: "POST"
+group: "slack"
 extra:
   python:
     source: "endpoints/slack.py"

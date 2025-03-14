@@ -21,7 +21,7 @@ resource:
       enabled: false
 plugins:
   endpoints:
-    - "group/slack.yaml"
+    - "endpoints/slack.yaml"
 meta:
   version: 0.0.1
   arch:
