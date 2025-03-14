@@ -1,0 +1,70 @@
+name: Package and Release Dify Plugin
+
+on:
+  # Manual trigger from GitHub UI
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+  
+  # Or trigger on pushing a new tag
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Add this line to grant necessary permissions
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+      
+      - name: Extract version
+        id: get_version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+          else
+            echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          fi
+      
+      - name: Create Dify package
+        run: |
+          # Read plugin ID from plugin.yaml
+          PLUGIN_ID=$(python -c "import yaml; print(yaml.safe_load(open('plugin.yaml'))['id'])")
+          echo "Plugin ID: $PLUGIN_ID"
+          echo "Version: $VERSION"
+          
+          # Create the difypkg file
+          PACKAGE_NAME="${PLUGIN_ID}-${VERSION#v}.difypkg"
+          echo "Creating package: $PACKAGE_NAME"
+          
+          # Zip all files except .git and GitHub workflows
+          zip -r "$PACKAGE_NAME" . -x "*.git*" ".github/*" "*.difypkg"
+          
+          echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
+      
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          files: ${{ env.PACKAGE_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
